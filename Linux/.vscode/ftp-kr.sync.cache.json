@@ -1,0 +1,374 @@
+{
+  "sftp://163.152.20.246:22@id2011171061": {
+    "Assignment4": {},
+    ".bash_history": {
+      "type": "-",
+      "size": 7956,
+      "lmtime": 0,
+      "modified": false
+    },
+    "24_Particles": {},
+    "[Script]": {},
+    "bin": {},
+    ".bashrc": {
+      "type": "-",
+      "size": 3771,
+      "lmtime": 0,
+      "modified": false
+    },
+    "28_CUDA_Particles": {},
+    "OpenGL": {},
+    "Assignment_1": {},
+    "examples.desktop": {
+      "type": "-",
+      "size": 8980,
+      "lmtime": 0,
+      "modified": false
+    },
+    "Environment": {},
+    ".nv": {},
+    ".local": {},
+    ".bash_logout": {
+      "type": "-",
+      "size": 220,
+      "lmtime": 0,
+      "modified": false
+    },
+    "DataTransfer": {},
+    ".vgl": {},
+    "20_Histogram": {},
+    "GLSLBasic": {},
+    ".viminfo": {
+      "type": "-",
+      "size": 613,
+      "lmtime": 0,
+      "modified": false
+    },
+    "Phong": {},
+    "Assignment_2": {},
+    "18_Shared": {},
+    "OBJLoader": {},
+    "21_Reduction": {},
+    "_Assignment_2": {},
+    ".profile": {
+      "type": "-",
+      "size": 655,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".cache": {},
+    ".Xauthority": {
+      "type": "-",
+      "size": 2447,
+      "lmtime": 0,
+      "modified": false
+    },
+    ".ssh": {},
+    "17_MatrixMulti": {},
+    "home": {
+      "id2011171061": {
+        "Assignment4": {},
+        ".bash_history": {
+          "type": "-",
+          "size": 8906,
+          "lmtime": 0,
+          "modified": true
+        },
+        "24_Particles": {},
+        "[Script]": {},
+        "bin": {},
+        ".bashrc": {
+          "type": "-",
+          "size": 3771,
+          "lmtime": 0,
+          "modified": false
+        },
+        "28_CUDA_Particles": {},
+        "MiniProject": {
+          "scripts": {
+            "findgllib.mk": {
+              "type": "-",
+              "size": 6508,
+              "lmtime": 1545288646605,
+              "modified": false
+            },
+            "stb_image.h": {
+              "type": "-",
+              "size": 267751,
+              "lmtime": 1545304405378,
+              "modified": false
+            },
+            "shaders.h": {
+              "type": "-",
+              "size": 471,
+              "lmtime": 1545288646646,
+              "modified": false
+            },
+            "render_particles.cpp": {
+              "type": "-",
+              "size": 3514,
+              "lmtime": 1545288646671,
+              "modified": false
+            },
+            "helper_functions.h": {
+              "type": "-",
+              "size": 1198,
+              "lmtime": 1545288646692,
+              "modified": false
+            },
+            "render_particles.h": {
+              "type": "-",
+              "size": 1831,
+              "lmtime": 1545288646718,
+              "modified": false
+            },
+            "Bitmap.cpp": {
+              "type": "-",
+              "size": 11031,
+              "lmtime": 1545304362439,
+              "modified": false
+            },
+            "helper_string.h": {
+              "type": "-",
+              "size": 33798,
+              "lmtime": 1545288646765,
+              "modified": false
+            },
+            "particleSystem.cpp": {
+              "type": "-",
+              "size": 13464,
+              "lmtime": 1545288646813,
+              "modified": false
+            },
+            "paramgl.h": {
+              "type": "-",
+              "size": 8343,
+              "lmtime": 1545288646847,
+              "modified": false
+            },
+            "particleSystem_cuda.cu": {
+              "type": "-",
+              "size": 8194,
+              "lmtime": 1545288646867,
+              "modified": false
+            },
+            "helper_image.h": {
+              "type": "-",
+              "size": 27579,
+              "lmtime": 1545288646965,
+              "modified": false
+            },
+            "particleSystem.cuh": {
+              "type": "-",
+              "size": 1400,
+              "lmtime": 1545288646990,
+              "modified": false
+            },
+            "main.cpp": {
+              "type": "-",
+              "size": 14360,
+              "lmtime": 1545305451164,
+              "modified": false
+            },
+            "main.o": {
+              "type": "-",
+              "size": 329480,
+              "lmtime": 0,
+              "modified": false
+            },
+            "shaders.o": {
+              "type": "-",
+              "size": 1960,
+              "lmtime": 0,
+              "modified": false
+            },
+            "particleSystem.o": {
+              "type": "-",
+              "size": 150040,
+              "lmtime": 0,
+              "modified": false
+            },
+            "Makefile": {
+              "type": "-",
+              "size": 11649,
+              "lmtime": 1545305033508,
+              "modified": false
+            },
+            "helper_gl.h": {
+              "type": "-",
+              "size": 10396,
+              "lmtime": 1545288647461,
+              "modified": false
+            },
+            "helper_timer.h": {
+              "type": "-",
+              "size": 14900,
+              "lmtime": 1545288647529,
+              "modified": false
+            },
+            "shaders.cpp": {
+              "type": "-",
+              "size": 1806,
+              "lmtime": 1545288647552,
+              "modified": false
+            },
+            "helper_cuda.h": {
+              "type": "-",
+              "size": 36542,
+              "lmtime": 1545288647605,
+              "modified": false
+            },
+            "particles_kernel.cuh": {
+              "type": "-",
+              "size": 641,
+              "lmtime": 1545288647628,
+              "modified": false
+            },
+            "param.h": {
+              "type": "-",
+              "size": 6634,
+              "lmtime": 1545288647646,
+              "modified": false
+            },
+            "particleSystem_cuda.o": {
+              "type": "-",
+              "size": 1871352,
+              "lmtime": 0,
+              "modified": false
+            },
+            "particleSystem.h": {
+              "type": "-",
+              "size": 4553,
+              "lmtime": 1545288648378,
+              "modified": false
+            },
+            "helper_math.h": {
+              "type": "-",
+              "size": 37310,
+              "lmtime": 1545288648471,
+              "modified": false
+            },
+            "render_particles.o": {
+              "type": "-",
+              "size": 121808,
+              "lmtime": 0,
+              "modified": false
+            },
+            "Bitmap.h": {
+              "type": "-",
+              "size": 4440,
+              "lmtime": 1545304348029,
+              "modified": false
+            },
+            "particles_kernel_impl.cuh": {
+              "type": "-",
+              "size": 10400,
+              "lmtime": 1545288649566,
+              "modified": false
+            },
+            "Bitmap.o": {
+              "type": "-",
+              "size": 174816,
+              "lmtime": 0,
+              "modified": false
+            }
+          },
+          "EXE": {
+            "type": "-",
+            "size": 2477736,
+            "lmtime": 1545291128835,
+            "modified": false
+          },
+          "textures": {
+            "cubemap5.jpg": {
+              "type": "-",
+              "size": 214207,
+              "lmtime": 1545304653943,
+              "modified": false
+            },
+            "cubemap3.jpg": {
+              "type": "-",
+              "size": 149750,
+              "lmtime": 1545304654054,
+              "modified": false
+            },
+            "cubemap2.jpg": {
+              "type": "-",
+              "size": 202236,
+              "lmtime": 1545304654187,
+              "modified": false
+            },
+            "cubemap4.jpg": {
+              "type": "-",
+              "size": 598702,
+              "lmtime": 1545304654502,
+              "modified": false
+            },
+            "cubemap6.jpg": {
+              "type": "-",
+              "size": 223181,
+              "lmtime": 1545304654650,
+              "modified": false
+            },
+            "cubemap1.jpg": {
+              "type": "-",
+              "size": 265462,
+              "lmtime": 1545304654876,
+              "modified": false
+            }
+          }
+        },
+        "OpenGL": {},
+        "Assignment_1": {},
+        "examples.desktop": {
+          "type": "-",
+          "size": 8980,
+          "lmtime": 0,
+          "modified": false
+        },
+        "Environment": {},
+        "13_Environment": {},
+        ".nv": {},
+        ".local": {},
+        ".bash_logout": {
+          "type": "-",
+          "size": 220,
+          "lmtime": 0,
+          "modified": false
+        },
+        "DataTransfer": {},
+        ".vgl": {},
+        "20_Histogram": {},
+        "GLSLBasic": {},
+        ".viminfo": {
+          "type": "-",
+          "size": 613,
+          "lmtime": 0,
+          "modified": false
+        },
+        "Phong": {},
+        "Assignment_2": {},
+        "18_Shared": {},
+        "OBJLoader": {},
+        "21_Reduction": {},
+        "_Assignment_2": {},
+        ".profile": {
+          "type": "-",
+          "size": 655,
+          "lmtime": 0,
+          "modified": false
+        },
+        ".cache": {},
+        ".Xauthority": {
+          "type": "-",
+          "size": 2447,
+          "lmtime": 0,
+          "modified": false
+        },
+        ".ssh": {},
+        "17_MatrixMulti": {}
+      }
+    }
+  },
+  "$version": 1
+}
