@@ -14,6 +14,11 @@
 #include "render_particles.h"
 #include "paramgl.h"
 
+#include "Skybox.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 #define MAX_EPSILON_ERROR 5.00f
 #define THRESHOLD         0.30f
 #define GRID_SIZE       64
@@ -64,6 +69,8 @@ const int frameCheckNumber = 4;
 unsigned int frameCount = 0;
 unsigned int g_TotalErrors = 0;
 const char *sSDKsample = "CUDA Particles Simulation";
+// Sky Box
+Skybox *skybox = 0;
 
 //Functions
 extern "C" void cudaInit(int argc, char **argv);
@@ -167,6 +174,20 @@ void display(){
 
     glGetFloatv(GL_MODELVIEW_MATRIX, modelView);
 
+	float view[16];
+	const float* viewPtr = glm::value_ptr(
+		glm::mat4(glm::mat3(glm::lookAt(
+		glm::vec3(camera_trans_lag[0], camera_trans_lag[1], camera_trans_lag[2]),
+		glm::vec3(camera_trans_lag[0] + camera_rot_lag[0], camera_trans_lag[1] + camera_rot_lag[1], 0),
+		glm::vec3(0, 1, 0)
+		)))
+	);
+	for(int i = 0; i < 16; ++i) view[i] = viewPtr[i];
+	
+	float projection[16];
+	glGetFloatv(GL_PROJECTION_MATRIX, projection);
+
+
     // cube
     glColor3f(1.0, 1.0, 1.0);
     glutWireCube(2.0);
@@ -184,6 +205,9 @@ void display(){
     {
         renderer->display(displayMode);
     }
+
+	// skybox
+	skybox->display(view, projection);
 
     if (displaySliders)
     {
@@ -524,6 +548,11 @@ void initMenus(){
     glutAddMenuEntry("Quit (esc)", '\033');
     glutAttachMenu(GLUT_RIGHT_BUTTON);
 }
+void initSkybox()
+{
+	skybox = new Skybox();
+	renderer->setSkyBox(skybox->getID());
+}
 
 int main(int argc, char **argv){
     //Local variables
@@ -537,6 +566,7 @@ int main(int argc, char **argv){
     initParticleSystem(numParticles, gridSize, true);
     initParams();
     initMenus();
+	initSkybox();
 	//GLUT Functions
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);

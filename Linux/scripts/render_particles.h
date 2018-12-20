@@ -53,8 +53,14 @@ class ParticleRenderer
             m_window_h = h;
         }
 
+		void setSkyBox(GLuint cubeMapTex)
+		{
+			m_cubeMapTex = cubeMapTex;
+		}
+
     protected: // methods
         void _initGL();
+		void _initTexture();
         void _drawPoints();
         GLuint _compileProgram(const char *vsource, const char *fsource);
 
@@ -71,6 +77,9 @@ class ParticleRenderer
 
         GLuint m_vbo;
         GLuint m_colorVBO;
+
+		GLuint m_cubeMapTex;
+		GLuint m_particleTex;
 };
 
 #endif //__ RENDER_PARTICLES__

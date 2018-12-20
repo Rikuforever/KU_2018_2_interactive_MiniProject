@@ -316,7 +316,10 @@ shaders.o:shaders.cpp
 Bitmap.o:Bitmap.cpp
 	$(EXEC) $(NVCC) $(INCLUDES) $(ALL_CCFLAGS) $(GENCODE_FLAGS) -o $@ -c $<
 
-EXE: particleSystem.o particleSystem_cuda.o main.o render_particles.o shaders.o Bitmap.o
+Skybox.o:Skybox.cpp
+	$(EXEC) $(NVCC) $(INCLUDES) $(ALL_CCFLAGS) $(GENCODE_FLAGS) -o $@ -c $<
+
+EXE: particleSystem.o particleSystem_cuda.o main.o render_particles.o shaders.o Bitmap.o Skybox.o
 	$(EXEC) $(NVCC) $(ALL_LDFLAGS) $(GENCODE_FLAGS) -o $@ $+ $(LIBRARIES)
 	$(EXEC) cp $@ ../
 	$(EXEC) rm -f $@

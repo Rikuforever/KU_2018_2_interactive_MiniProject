@@ -6,6 +6,7 @@
 #include "helper_gl.h"
 #include "render_particles.h"
 #include "shaders.h"
+#include "Bitmap.h"
 
 #ifndef M_PI
 #define M_PI    3.1415926535897932384626433832795
@@ -25,6 +26,8 @@ void ParticleRenderer::setVertexBuffer(unsigned int vbo, int numParticles){
     m_vbo = vbo;
     m_numParticles = numParticles;
 }
+
+
 void ParticleRenderer::_drawPoints(){
     if (!m_vbo)
     {
@@ -86,8 +89,7 @@ void ParticleRenderer::display(DisplayMode mode ){
     }
 }
 
-GLuint
-ParticleRenderer::_compileProgram(const char *vsource, const char *fsource)
+GLuint ParticleRenderer::_compileProgram(const char *vsource, const char *fsource)
 {
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
     GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
@@ -124,4 +126,22 @@ ParticleRenderer::_compileProgram(const char *vsource, const char *fsource)
 void ParticleRenderer::_initGL()
 {
     m_program = _compileProgram(vertexShader, spherePixelShader);
+}
+void ParticleRenderer::_initTexture()
+{
+	// Particle
+	glGenTextures(1, &m_particleTex);
+
+	glBindTexture(GL_TEXTURE_2D, m_particleTex);
+
+	Bitmap bmp = Bitmap::bitmapFromFile("textures/particle.jpg");
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, bmp.width(), bmp.height(), 0, GL_RGB, GL_UNSIGNED_BYTE, bmp.pixelBuffer());
+
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+
+	glBindTexture(GL_TEXTURE_2D, 0);
 }
