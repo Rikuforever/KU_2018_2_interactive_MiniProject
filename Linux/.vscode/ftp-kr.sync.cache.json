@@ -98,6 +98,12 @@
               "lmtime": 1545304405378,
               "modified": false
             },
+            "Helper.o": {
+              "type": "-",
+              "size": 2296,
+              "lmtime": 0,
+              "modified": false
+            },
             "Skybox.h": {
               "type": "-",
               "size": 445,
@@ -112,8 +118,8 @@
             },
             "render_particles.cpp": {
               "type": "-",
-              "size": 4147,
-              "lmtime": 1545322386904,
+              "size": 4246,
+              "lmtime": 1545345462431,
               "modified": false
             },
             "helper_functions.h": {
@@ -142,8 +148,14 @@
             },
             "particleSystem.cpp": {
               "type": "-",
-              "size": 13464,
-              "lmtime": 1545288646813,
+              "size": 13507,
+              "lmtime": 1545347006656,
+              "modified": false
+            },
+            "Helper.cpp": {
+              "type": "-",
+              "size": 736,
+              "lmtime": 1545345894195,
               "modified": false
             },
             "paramgl.h": {
@@ -166,7 +178,7 @@
             },
             "Skybox.o": {
               "type": "-",
-              "size": 125128,
+              "size": 124208,
               "lmtime": 0,
               "modified": true
             },
@@ -178,8 +190,8 @@
             },
             "Helper.h": {
               "type": "-",
-              "size": 708,
-              "lmtime": 1545330017342,
+              "size": 133,
+              "lmtime": 1545345854969,
               "modified": false
             },
             "particleSystem.cuh": {
@@ -190,32 +202,26 @@
             },
             "main.cpp": {
               "type": "-",
-              "size": 15078,
-              "lmtime": 1545337207598,
+              "size": 15077,
+              "lmtime": 1545347871621,
               "modified": false
             },
             "main.o": {
               "type": "-",
-              "size": 359000,
+              "size": 358904,
               "lmtime": 0,
               "modified": true
             },
-            "shaders.o": {
-              "type": "-",
-              "size": 1960,
-              "lmtime": 0,
-              "modified": false
-            },
             "particleSystem.o": {
               "type": "-",
-              "size": 150040,
+              "size": 150024,
               "lmtime": 1545288647379,
-              "modified": false
+              "modified": true
             },
             "Makefile": {
               "type": "-",
-              "size": 11752,
-              "lmtime": 1545311204460,
+              "size": 11757,
+              "lmtime": 1545345839010,
               "modified": false
             },
             "helper_gl.h": {
@@ -274,9 +280,9 @@
             },
             "render_particles.o": {
               "type": "-",
-              "size": 123280,
+              "size": 123352,
               "lmtime": 0,
-              "modified": false
+              "modified": true
             },
             "Bitmap.h": {
               "type": "-",
@@ -301,21 +307,33 @@
             "Skybox.vs": {
               "type": "-",
               "size": 255,
-              "lmtime": 1545332208034,
+              "lmtime": 1545346485769,
+              "modified": false
+            },
+            "Sphere.fs": {
+              "type": "-",
+              "size": 446,
+              "lmtime": 1545346491260,
+              "modified": false
+            },
+            "Sphere.vs": {
+              "type": "-",
+              "size": 557,
+              "lmtime": 1545346496445,
               "modified": false
             },
             "Skybox.fs": {
               "type": "-",
               "size": 163,
-              "lmtime": 1545317257129,
+              "lmtime": 1545346483516,
               "modified": false
             }
           },
           "EXE": {
             "type": "-",
-            "size": 2627184,
-            "lmtime": 1545305690702,
-            "modified": true
+            "size": 2644976,
+            "lmtime": 0,
+            "modified": false
           },
           "textures": {
             "cubemap5.jpg": {

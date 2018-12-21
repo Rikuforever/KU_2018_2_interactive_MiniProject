@@ -5,8 +5,9 @@
 #define HELPERGL_EXTERN_GL_FUNC_IMPLEMENTATION
 #include "helper_gl.h"
 #include "render_particles.h"
-#include "shaders.h"
+
 #include "Bitmap.h"
+#include "Helper.h"
 
 #ifndef M_PI
 #define M_PI    3.1415926535897932384626433832795
@@ -59,7 +60,7 @@ void ParticleRenderer::_drawPoints(){
         glDisableClientState(GL_COLOR_ARRAY);
     }
 }
-void ParticleRenderer::display(DisplayMode mode ){
+void ParticleRenderer::display(DisplayMode mode, float* cameraPos){
     switch (mode)
     {
         case PARTICLE_POINTS:
@@ -77,8 +78,13 @@ void ParticleRenderer::display(DisplayMode mode ){
             glEnable(GL_DEPTH_TEST);
 
             glUseProgram(m_program);
+
             glUniform1f(glGetUniformLocation(m_program, "pointScale"), m_window_h / tanf(m_fov*0.5f*(float)M_PI/180.0f));
             glUniform1f(glGetUniformLocation(m_program, "pointRadius"), m_particleRadius);
+			glUniform3f(glGetUniformLocation(m_program, "cameraPos"), cameraPos[0], cameraPos[1], cameraPos[2]);
+
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_CUBE_MAP, m_cubeMapTex);
 
             glColor3f(1, 1, 1);
             _drawPoints();
@@ -125,7 +131,10 @@ GLuint ParticleRenderer::_compileProgram(const char *vsource, const char *fsourc
 
 void ParticleRenderer::_initGL()
 {
-    m_program = _compileProgram(vertexShader, spherePixelShader);
+    char* data_vertex = ReadFile("shaders/Sphere.vs");
+	char* data_sphere = ReadFile("shaders/Sphere.fs");
+	
+	m_program = _compileProgram(data_vertex, data_sphere);
 }
 void ParticleRenderer::_initTexture()
 {

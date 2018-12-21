@@ -22,7 +22,7 @@
 #define MAX_EPSILON_ERROR 5.00f
 #define THRESHOLD         0.30f
 #define GRID_SIZE       64
-#define NUM_PARTICLES   16384
+#define NUM_PARTICLES   8
 
 //Global Variables
 const uint width = 640, height = 480;
@@ -50,7 +50,7 @@ uint3 gridSize;
 int numIterations = 0; // run until exit
 float timestep = 0.5f;
 float damping = 1.0f;
-float gravity = 0.0003f;
+float gravity = 0.1f;
 int iterations = 1;
 int ballr = 10;
 float collideSpring = 0.5f;
@@ -174,6 +174,7 @@ void display(){
 
     glGetFloatv(GL_MODELVIEW_MATRIX, modelView);
 
+
 	float view[16];
 	const float* viewPtr = glm::value_ptr(
 		glm::mat4(glm::mat3(glm::lookAt(
@@ -203,7 +204,7 @@ void display(){
     // particles
     if (renderer && displayEnabled)
     {
-        renderer->display(displayMode);
+        renderer->display(displayMode, camera_trans_lag);
     }
 
 	// skybox

@@ -32,7 +32,7 @@ class ParticleRenderer
             PARTICLE_NUM_MODES
         };
 
-        void display(DisplayMode mode = PARTICLE_POINTS);
+        void display(DisplayMode mode = PARTICLE_POINTS, float* cameraPos = 0);
         void displayGrid();
 
         void setPointSize(float size)
