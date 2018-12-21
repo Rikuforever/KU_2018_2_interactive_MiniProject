@@ -39,8 +39,38 @@ struct integrate_functor
         volatile float4 velData = thrust::get<1>(t);
         float3 pos = make_float3(posData.x, posData.y, posData.z);
         float3 vel = make_float3(velData.x, velData.y, velData.z);
+        
+        //연산과정
+        float x0 = posData.x;
+        float y0 = posData.y;
+        float z0 = posData.z;
 
-        vel += params.gravity * deltaTime;
+        float r0 = (1/3)*(x0+y0+z0);//최소 거리 위치
+
+        float3 r03 = make_float3(r0,r0,r0);//최소거리인 점
+
+        float3 acc1 = (r0 - pos)*2;//직선을 향하는 가속도 방향
+
+        float3 dir = make_float3(1.0f,1.0f,1.0f)*0.001f;//방향
+
+        float dis = (r0-x0)*(r0-x0)+(r0-y0)*(r0-y0)+(r0-z0)*(r0-z0);//멀수록 빨리
+
+        float3 acc = acc1*dis + dir;//가속도 방향
+        float a0=acc.x;
+        float a1=acc.y;
+        float a2=acc.z;
+
+        float accm = a0*a0 + a1*a1 + a2*a2;
+       
+        accm = sqrt(accm);
+
+        acc= acc*0.02f*(1/accm);
+
+        vel += acc*deltaTime;
+
+        //vel += params.gravity * deltaTime;//deltat*g
+        //vel += make_float3(0.0f, 0.001f, 0.0f);
+        
         vel *= params.globalDamping;
 
         // new position = old position + velocity * deltaTime

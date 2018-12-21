@@ -50,7 +50,7 @@ uint3 gridSize;
 int numIterations = 0; // run until exit
 float timestep = 0.5f;
 float damping = 1.0f;
-float gravity = 0.1f;
+float gravity = 0.003f;
 int iterations = 1;
 int ballr = 10;
 float collideSpring = 0.5f;
