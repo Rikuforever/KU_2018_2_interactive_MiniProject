@@ -13,8 +13,9 @@
 #define M_PI    3.1415926535897932384626433832795
 #endif
 
-ParticleRenderer::ParticleRenderer(): m_pos(0), m_numParticles(0), m_pointSize(1.0f), m_particleRadius(0.125f * 0.5f), m_program(0), m_vbo(0), m_colorVBO(0){
+ParticleRenderer::ParticleRenderer(): m_pos(0), m_numParticles(0), m_pointSize(1.0f), m_particleRadius(0.125f * 0.5f), m_program_normal(0), m_program_reflect(0), m_program_refract(0), m_vbo(0), m_colorVBO(0){
     _initGL();
+	_initTexture();
 }
 ParticleRenderer::~ParticleRenderer(){
     m_pos = 0;
@@ -61,39 +62,57 @@ void ParticleRenderer::_drawPoints(){
     }
 }
 void ParticleRenderer::display(DisplayMode mode, float* cameraPos){
-    switch (mode)
-    {
-        case PARTICLE_POINTS:
-            glColor3f(1, 1, 1);
-            glPointSize(m_pointSize);
-            _drawPoints();
-            break;
+	if(mode == PARTICLE_POINTS)
+	{
+		glColor3f(1, 1, 1);
+		glPointSize(m_pointSize);
+		_drawPoints();
+	}
+	else
+	{
+		glEnable(GL_POINT_SPRITE_ARB);
+		glTexEnvi(GL_POINT_SPRITE_ARB, GL_COORD_REPLACE_ARB, GL_TRUE);
+		glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
+		glDepthMask(GL_TRUE);
+		glEnable(GL_DEPTH_TEST);
 
-        default:
-        case PARTICLE_SPHERES:
-            glEnable(GL_POINT_SPRITE_ARB);
-            glTexEnvi(GL_POINT_SPRITE_ARB, GL_COORD_REPLACE_ARB, GL_TRUE);
-            glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
-            glDepthMask(GL_TRUE);
-            glEnable(GL_DEPTH_TEST);
+		GLuint program;
+		switch(mode)
+		{
+			default:
+			case PARTICLE_SPHERES:
+				program = m_program_normal;
+				break;
+			case PARTICLE_REFLECT:
+				program = m_program_reflect;
+				break;
+			case PARTICLE_REFRACT:
+				program = m_program_refract;
+				break;
+			case PARTICLE_TEXTURE:
+				program = m_program_texture;
+				break;
+		}
 
-            glUseProgram(m_program);
+		glUseProgram(program);
 
-            glUniform1f(glGetUniformLocation(m_program, "pointScale"), m_window_h / tanf(m_fov*0.5f*(float)M_PI/180.0f));
-            glUniform1f(glGetUniformLocation(m_program, "pointRadius"), m_particleRadius);
+		glUniform1f(glGetUniformLocation(program, "pointScale"), m_window_h / tanf(m_fov*0.5f*(float)M_PI/180.0f));
+		glUniform1f(glGetUniformLocation(program, "pointRadius"), m_particleRadius);
 
-			glUniform3f(glGetUniformLocation(m_program, "cameraPos"), cameraPos[0], cameraPos[1], cameraPos[2]);
+		glUniform3f(glGetUniformLocation(program, "cameraPos"), cameraPos[0], cameraPos[1], cameraPos[2]);
 
-			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_CUBE_MAP, m_cubeMapTex);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_CUBE_MAP, m_cubeMapTex);
 
-            glColor3f(1, 1, 1);
-            _drawPoints();
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, m_particleTex);
 
-            glUseProgram(0);
-            glDisable(GL_POINT_SPRITE_ARB);
-            break;
-    }
+		glColor3f(1, 1, 1);
+		_drawPoints();
+
+		glUseProgram(0);
+		glDisable(GL_POINT_SPRITE_ARB);
+	}
 }
 
 GLuint ParticleRenderer::_compileProgram(const char *vsource, const char *fsource)
@@ -132,10 +151,24 @@ GLuint ParticleRenderer::_compileProgram(const char *vsource, const char *fsourc
 
 void ParticleRenderer::_initGL()
 {
-    char* data_vertex = ReadFile("shaders/Sphere.vs");
-	char* data_sphere = ReadFile("shaders/Sphere.fs");
-	
-	m_program = _compileProgram(data_vertex, data_sphere);
+    char* data_vertex;
+	char* data_fragment;
+
+	data_vertex = ReadFile("shaders/Sphere_normal.vs");
+	data_fragment = ReadFile("shaders/Sphere_normal.fs");
+	m_program_normal = _compileProgram(data_vertex, data_fragment);
+
+	data_vertex = ReadFile("shaders/Sphere_reflect.vs");
+	data_fragment = ReadFile("shaders/Sphere_reflect.fs");
+	m_program_reflect = _compileProgram(data_vertex, data_fragment);
+
+	data_vertex = ReadFile("shaders/Sphere_refract.vs");
+	data_fragment = ReadFile("shaders/Sphere_refract.fs");
+	m_program_refract = _compileProgram(data_vertex, data_fragment);
+
+	data_vertex = ReadFile("shaders/Sphere_texture.vs");
+	data_fragment = ReadFile("shaders/Sphere_texture.fs");
+	m_program_texture = _compileProgram(data_vertex, data_fragment);
 }
 void ParticleRenderer::_initTexture()
 {

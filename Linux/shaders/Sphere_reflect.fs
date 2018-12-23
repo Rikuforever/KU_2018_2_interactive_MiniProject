@@ -18,15 +18,9 @@ void main()
 
     N.z = sqrt(1.0-mag);
 
-    // calculate lighting
-    // float diffuse = max(0.0, dot(lightDir, N));
-	// gl_FragColor = gl_Color * diffuse;
-
-	// Reflect & Refract
+    // Reflect
 	vec3 I = normalize(position + cameraPos);
-
 	vec3 reflectRay = reflect(I, normalize(N));
-	vec3 refractRay = refract(I, normalize(N), 0.65);
 
-    gl_FragColor = vec4(textureCube(skybox, refractRay).rgb, 1.0);
+    gl_FragColor = vec4(textureCube(skybox, reflectRay).rgb, 1.0);
 }

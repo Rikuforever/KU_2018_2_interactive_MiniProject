@@ -29,6 +29,9 @@ class ParticleRenderer
         {
             PARTICLE_POINTS,
             PARTICLE_SPHERES,
+			PARTICLE_REFLECT,
+			PARTICLE_REFRACT,
+			PARTICLE_TEXTURE,
             PARTICLE_NUM_MODES
         };
 
@@ -73,7 +76,10 @@ class ParticleRenderer
         float m_fov;
         int m_window_w, m_window_h;
 
-        GLuint m_program;
+		GLuint m_program_normal;
+        GLuint m_program_reflect;
+		GLuint m_program_refract;
+		GLuint m_program_texture;
 
         GLuint m_vbo;
         GLuint m_colorVBO;

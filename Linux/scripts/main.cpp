@@ -178,9 +178,10 @@ void display(){
     glPopMatrix();
 
     // transform
-    glTranslatef(camera_trans_lag[0], camera_trans_lag[1], camera_trans_lag[2]);
+    // glTranslatef(camera_trans_lag[0], camera_trans_lag[1], camera_trans_lag[2]);
     glRotatef(camera_rot_lag[0], 1.0, 0.0, 0.0);
     glRotatef(camera_rot_lag[1], 0.0, 1.0, 0.0);
+	glTranslatef(camera_trans_lag[0], camera_trans_lag[1], camera_trans_lag[2]);
 
     glGetFloatv(GL_MODELVIEW_MATRIX, modelView);
 
