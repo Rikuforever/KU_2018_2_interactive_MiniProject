@@ -22,7 +22,7 @@
 #define MAX_EPSILON_ERROR 5.00f
 #define THRESHOLD         0.30f
 #define GRID_SIZE       64
-#define NUM_PARTICLES   8
+#define NUM_PARTICLES   1000
 
 //Global Variables
 const uint width = 640, height = 480;
@@ -69,6 +69,12 @@ const int frameCheckNumber = 4;
 unsigned int frameCount = 0;
 unsigned int g_TotalErrors = 0;
 const char *sSDKsample = "CUDA Particles Simulation";
+
+//Fan Coordinate
+float fansize = 0.3f;
+float fanangle = 0.1f;
+
+
 // Sky Box
 Skybox *skybox = 0;
 
@@ -189,6 +195,18 @@ void display(){
     glColor3f(1.0, 1.0, 1.0);
     glutWireCube(2.0);
 
+    //fan
+    glPushMatrix();
+    glRotatef(fanangle,0.0f,1.0f,0.0f);
+    glBegin(GL_QUADS);
+    glVertex3f(0.0f,-1.0f, -fansize);
+    glVertex3f(-fansize,-1.0f, 0.0f);
+    glVertex3f(0.0f,-1.0f, fansize);
+    glVertex3f(fansize,-1.0f, 0.0f);
+    
+    glEnd();
+    glPopMatrix();
+
     // collider
     glPushMatrix();
 		float3 p = psystem->getColliderPos();
@@ -222,6 +240,8 @@ void display(){
     glutReportErrors();
 
     computeFPS();
+
+    fanangle += 30.0f;
 }
 inline float frand(){
     return rand() / (float) RAND_MAX;

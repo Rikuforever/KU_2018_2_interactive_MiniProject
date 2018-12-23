@@ -41,7 +41,7 @@ ParticleSystem::ParticleSystem(uint numParticles, uint3 gridSize, bool bUseOpenG
     m_params.numBodies = m_numParticles;
 
     //m_params.particleRadius = 1.0f / 64.0f;
-	m_params.particleRadius = 1.0f / 5.0f;
+	m_params.particleRadius = 1.0f / 64.0f;
     m_params.colliderPos = make_float3(-1.2f, -0.8f, 0.8f);
     m_params.colliderRadius = 0.2f;
 
@@ -368,9 +368,9 @@ void ParticleSystem::initGrid(uint *size, float spacing, float jitter, uint numP
 
                 if (i < numParticles)
                 {
-                    m_hPos[i*4] = (spacing * x) + m_params.particleRadius - 1.0f + (frand()*2.0f-1.0f)*jitter;
-                    m_hPos[i*4+1] = (spacing * y) + m_params.particleRadius - 1.0f + (frand()*2.0f-1.0f)*jitter;
-                    m_hPos[i*4+2] = (spacing * z) + m_params.particleRadius - 1.0f + (frand()*2.0f-1.0f)*jitter;
+                    m_hPos[i*4] = (spacing * x) + m_params.particleRadius - 0.0f + (frand()*2.0f-1.0f)*jitter;
+                    m_hPos[i*4+1] = (spacing * y) + m_params.particleRadius +0.9f + (frand()*2.0f-1.0f)*jitter;
+                    m_hPos[i*4+2] = (spacing * z) + m_params.particleRadius + 0.0f + (frand()*2.0f-1.0f)*jitter;
                     m_hPos[i*4+3] = 1.0f;
 
                     m_hVel[i*4] = 0.0f;

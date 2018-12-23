@@ -37,43 +37,52 @@ struct integrate_functor
     {
         volatile float4 posData = thrust::get<0>(t);
         volatile float4 velData = thrust::get<1>(t);
+       
         float3 pos = make_float3(posData.x, posData.y, posData.z);
         float3 vel = make_float3(velData.x, velData.y, velData.z);
+
+        vel += params.gravity * deltaTime;
         
-        //연산과정
-        float x0 = posData.x;
-        float y0 = posData.y;
-        float z0 = posData.z;
+        float A = 0.4f;// Acceleration , M=1
 
-        float r0 = (1/3)*(x0+y0+z0);//최소 거리 위치
+        float3 Forigin = make_float3(0.0f,-1.0f, 0.0f);//Fan's Origin
+        float3 P = make_float3(posData.x, posData.y, posData.z);//Current Point
+        float3 FOP = P-Forigin;
 
-        float3 r03 = make_float3(r0,r0,r0);//최소거리인 점
+        float FOPm = sqrt(FOP.x*FOP.x+FOP.y*FOP.y+FOP.z*FOP.z);
+        FOP = FOP/FOPm;//unit vector
 
-        float3 acc1 = (r0 - pos)*2;//직선을 향하는 가속도 방향
+    
 
-        float3 dir = make_float3(1.0f,1.0f,1.0f)*0.001f;//방향
+        if(posData.x<0.3f&&posData.x>-0.3f&&posData.z<0.3f&&posData.z>-0.3f&&posData.y>0.3f&&posData.y<0.5f)
+        {
+             vel += FOP*A*deltaTime*0.03f;
+        }
+        else if(posData.x<0.3f&&posData.x>-0.3f&&posData.z<0.3f&&posData.z>-0.3f&&posData.y>0.0f&&posData.y<0.3f)
+        {
+            
+            vel += FOP*A*deltaTime*0.07f;
+        }
+        else if(posData.x<0.3f&&posData.x>-0.3f&&posData.z<0.3f&&posData.z>-0.3f&&posData.y>-0.3f&&posData.y<0.0f)
+        {
+            
+            vel += FOP*A*deltaTime*0.1f;
+        }
+        else if(posData.x<0.3f&&posData.x>-0.3f&&posData.z<0.3f&&posData.z>-0.3f&&posData.y>-0.6f&&posData.y<-0.3f)
+        {
+            
+            vel += FOP*A*deltaTime*0.5f;
+        }
+        else if(posData.x<0.3f&&posData.x>-0.3f&&posData.z<0.3f&&posData.z>-0.3f&&posData.y<-0.6f)
+        {
+            
+            vel += FOP*A*deltaTime;
+        }
 
-        float dis = (r0-x0)*(r0-x0)+(r0-y0)*(r0-y0)+(r0-z0)*(r0-z0);//멀수록 빨리
-
-        float3 acc = acc1*dis + dir;//가속도 방향
-        float a0=acc.x;
-        float a1=acc.y;
-        float a2=acc.z;
-
-        float accm = a0*a0 + a1*a1 + a2*a2;
-       
-        accm = sqrt(accm);
-
-        acc= acc*0.02f*(1/accm);
-
-        vel += acc*deltaTime;
-
-        //vel += params.gravity * deltaTime;//deltat*g
-        //vel += make_float3(0.0f, 0.001f, 0.0f);
-        
         vel *= params.globalDamping;
 
         // new position = old position + velocity * deltaTime
+
         pos += vel * deltaTime;
 
         // set this to zero to disable collisions with cube sides
