@@ -5,11 +5,11 @@ uniform float pointScale;   // scale to calculate size in pixels
 uniform float densityScale;
 uniform float densityOffset;
 
-out vec3 fragPos;
+out vec3 position;
 
 void main()
 {
-    fragPos = gl_Vertex.xyz;
+	position = gl_Vertex.xyz;
 	
 	// calculate window-space point size
     vec3 posEye = vec3(gl_ModelViewMatrix * vec4(gl_Vertex.xyz, 1.0));

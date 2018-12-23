@@ -81,6 +81,7 @@ void ParticleRenderer::display(DisplayMode mode, float* cameraPos){
 
             glUniform1f(glGetUniformLocation(m_program, "pointScale"), m_window_h / tanf(m_fov*0.5f*(float)M_PI/180.0f));
             glUniform1f(glGetUniformLocation(m_program, "pointRadius"), m_particleRadius);
+
 			glUniform3f(glGetUniformLocation(m_program, "cameraPos"), cameraPos[0], cameraPos[1], cameraPos[2]);
 
 			glActiveTexture(GL_TEXTURE0);

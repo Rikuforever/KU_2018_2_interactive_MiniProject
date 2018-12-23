@@ -155,39 +155,34 @@ void display(){
         }
     }
 
-    // render
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    // view transform
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-
-    for (int c = 0; c < 3; ++c)
+	// update camera
+	for (int c = 0; c < 3; ++c)
     {
         camera_trans_lag[c] += (camera_trans[c] - camera_trans_lag[c]) * inertia;
         camera_rot_lag[c] += (camera_rot[c] - camera_rot_lag[c]) * inertia;
     }
 
+    // render
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	// get view & projection matrix
+	float view[16];
+	float projection[16];
+	glPushMatrix();
+		glRotatef(camera_rot_lag[0], 1.0, 0.0, 0.0);
+    	glRotatef(camera_rot_lag[1], 0.0, 1.0, 0.0);
+		glGetFloatv(GL_MODELVIEW_MATRIX, view);
+		glGetFloatv(GL_PROJECTION_MATRIX, projection);
+    glPopMatrix();
+
+    // transform
     glTranslatef(camera_trans_lag[0], camera_trans_lag[1], camera_trans_lag[2]);
     glRotatef(camera_rot_lag[0], 1.0, 0.0, 0.0);
     glRotatef(camera_rot_lag[1], 0.0, 1.0, 0.0);
 
     glGetFloatv(GL_MODELVIEW_MATRIX, modelView);
-
-
-	float view[16];
-	const float* viewPtr = glm::value_ptr(
-		glm::mat4(glm::mat3(glm::lookAt(
-		glm::vec3(camera_trans_lag[0], camera_trans_lag[1], camera_trans_lag[2]),
-		glm::vec3(camera_trans_lag[0] + camera_rot_lag[0], camera_trans_lag[1] + camera_rot_lag[1], 0),
-		glm::vec3(0, 1, 0)
-		)))
-	);
-	for(int i = 0; i < 16; ++i) view[i] = viewPtr[i];
-	
-	float projection[16];
-	glGetFloatv(GL_PROJECTION_MATRIX, projection);
-
 
     // cube
     glColor3f(1.0, 1.0, 1.0);
@@ -195,10 +190,10 @@ void display(){
 
     // collider
     glPushMatrix();
-    float3 p = psystem->getColliderPos();
-    glTranslatef(p.x, p.y, p.z);
-    glColor3f(1.0, 0.0, 0.0);
-    glutSolidSphere(psystem->getColliderRadius(), 20, 10);
+		float3 p = psystem->getColliderPos();
+		glTranslatef(p.x, p.y, p.z);
+		glColor3f(1.0, 0.0, 0.0);
+		glutSolidSphere(psystem->getColliderRadius(), 20, 10);
     glPopMatrix();
 
     // particles
